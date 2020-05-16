@@ -1,0 +1,10 @@
+
+.idea/workspace.xml
+.idea/python.iml
+.idea/modules.xml
+.idea/misc.xml
+.idea/inspectionProfiles/profiles_settings.xml
+__pycache__/MapGenerator.cpython-38.pyc
+__pycache__/VMFWriter.cpython-38.pyc
+*.vmf
+*.vmx
