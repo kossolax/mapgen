@@ -455,9 +455,8 @@ class MapGenerator:
 
     def show_layer(self, debug="elevation"):
         self.debug = debug
-        t = self.map.astype(np.uint8)
-        cv2.imwrite("Generator/map_" + self.debug + ".jpg", t)
-        cv2.imshow('image' + self.debug, t)
+        img = self.map.astype(np.uint8)
+        return cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
     def show(self):
         img = np.zeros((self.rows, self.cols, 3), np.uint8)
@@ -469,8 +468,7 @@ class MapGenerator:
                 img[x][y][1] = n.value[1]
                 img[x][y][2] = n.value[0]
 
-        cv2.imwrite("Generator/map.jpg", img)
-        cv2.imshow("image", img)
+        return cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
     def noise(self):
         def riged(x, y):
@@ -488,7 +486,7 @@ class MapGenerator:
                 e = riged(x, y)
                 img[x][y] = int(e * 255)
 
-        cv2.imshow("noise", img)
+        return cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
 
 if __name__ == "__main__":

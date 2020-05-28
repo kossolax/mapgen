@@ -1,6 +1,5 @@
 from MapGenerator import MapGenerator
 from VMFWriter import VMFWriter
-import PyQt5
 
 gen = MapGenerator(200, 200)
 gen.generate()
