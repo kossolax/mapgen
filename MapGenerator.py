@@ -136,7 +136,8 @@ class Mesh:
 
 
 class MapGenerator:
-    def __init__(self, rows, cols):
+    def __init__(self, rows, cols, curve):
+        self.curve = curve
         self.debug = None
         self.map = np.empty((rows, cols), dtype=Node)
         for x in range(0, rows):
@@ -269,7 +270,7 @@ class MapGenerator:
             nonocean = sorted(nonocean, key=lambda i: i.distanceToCoast)
             for i, n in enumerate(nonocean):
                 y = i / (len(nonocean) - 1)
-                x = math.sqrt(scale) - math.sqrt(scale * (1 - y))
+                x = self.curve.evaluate(y)
                 elevation[n] = x if x < 1 else 1
 
             for i, n in enumerate(nonocean):
@@ -436,7 +437,6 @@ class MapGenerator:
 
         print(len(meshes), len(optimized))
         return meshes
-
 
     def is_valid(self, x, y):
         return 0 <= x < self.rows and 0 <= y < self.cols
